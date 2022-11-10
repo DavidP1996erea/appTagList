@@ -5,19 +5,22 @@ import androidx.room.*
 
 @Dao
 interface TaskDao {
+
     @Query("SELECT * FROM task_entity")
   suspend fun getAllTasks(): MutableList <TasksEntity>
 
     @Query ("SELECT * FROM task_entity WHERE id=:id")
-    suspend  fun getTaskById(id: Int): TasksEntity
+    suspend  fun getTaskById(id: Long): TasksEntity
 
 
     @Insert
-    fun addTask(taskEntity : TasksEntity):Int
+    suspend fun addTask(taskEntity : TasksEntity):Long
 
 
-  @Update
+    @Update
     suspend fun updateTask(task: TasksEntity)
+
+
     @Delete
     suspend fun deleteTask(task: TasksEntity)
 

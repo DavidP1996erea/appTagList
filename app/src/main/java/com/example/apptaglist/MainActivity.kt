@@ -33,14 +33,6 @@ class MainActivity : AppCompatActivity() {
         getTasks()
     }
 
-    fun clearFocus(){
-        var  etTask = findViewById<TextView>(R.id.etTask)
-        etTask.setText("")
-    }
-    fun Context.hideKeyboard() {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-    }
 
 
     fun getTasks() = runBlocking {
@@ -85,5 +77,16 @@ class MainActivity : AppCompatActivity() {
             clearFocus()
             hideKeyboard()
         }
+
     }
+
+    fun clearFocus(){
+        var  etTask = findViewById<TextView>(R.id.etTask)
+        etTask.text=""
+    }
+    fun Context.hideKeyboard() {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+    }
+
 }
